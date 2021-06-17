@@ -10,5 +10,5 @@ module.exports = {
     },
     postByUserId: (parent, {userId}, {dataSources}, info) => {
       return dataSources.postAPI.getPostByUserId(userId);
-    },
+    }
 }

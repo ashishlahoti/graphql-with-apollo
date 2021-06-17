@@ -2,32 +2,33 @@ const { gql } = require('apollo-server');
 
 module.exports = gql`
   type User {
-    id: ID!,
-    firstname: String,
-    lastname: String,
-    username: String,
-    email: String,
-    address: Address,
+    id: ID!
+    name: String
+    username: String
+    email: String
+    phone: String
+    website: String
+    address: Address
     posts: [Post]
   }
 
   type Address {
-    street: String,
-    suite: String,
-    city: String,
-    zipcode: String,
+    street: String
+    suite: String
+    city: String
+    zipcode: String
     geo: Geo
   }
 
   type Geo {
-      lat: String,
+      lat: String
       lng: String
   }
 
   type Post {
-    id: ID!,
-    userId: String,
-    title: String,
+    id: ID!
+    userId: String
+    title: String
     body: String
   }
   
@@ -38,13 +39,22 @@ module.exports = gql`
   
   type Query {
     users: [User]
-    books: [Book],
-    posts: [Post],
-    postById(id:ID): Post,
+    books: [Book]
+    posts: [Post]
+    postById(id:ID): Post
     postByUserId(userId:ID): [Post]
   }
 
+  input UserInput {
+    name: String
+    email: String
+    phone: String
+    website: String
+  }
+
   type Mutation {
-    fullName: User
+    createUser(input: UserInput): User
+    updateUser(input: UserInput, id: ID): User
+    deleteUser(id: ID): Boolean
   }
 `;

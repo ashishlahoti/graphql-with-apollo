@@ -14,6 +14,18 @@ class UserAPI extends RESTDataSource {
     async getUserById(id) {
         return await this.get(`/${id}`);
     }
+
+    async createUser(userInput){
+        return await this.post('/', userInput);
+    }
+
+    async updateUser(id, userInput){
+        return await this.put(`/${id}`, userInput);
+    }
+
+    async deleteUser(id){
+        return await this.delete(`/${id}`);
+    }
 }
 
 module.exports = UserAPI;
